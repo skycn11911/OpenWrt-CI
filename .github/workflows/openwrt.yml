@@ -23,7 +23,7 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
-      - name: Checkout
+    - name: 准备结束
         uses: actions/checkout@master
 
       - name: Initialization environment
