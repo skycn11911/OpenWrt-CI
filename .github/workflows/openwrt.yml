@@ -16,7 +16,7 @@ on:
       ssh:
         description: 'SSH connection to Actions'
         required: false
-        default: 'true'
+        default: 'false'
 
 env:
   Github: https://github.com/${{github.repository}}
