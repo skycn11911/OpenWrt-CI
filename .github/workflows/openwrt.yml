@@ -1,12 +1,4 @@
-#
-# This is free software, lisence use MIT.
-# 
-# Copyright (C) 2019 P3TERX <https://p3terx.com>
-# Copyright (C) 2020 KFERMercer <KFER.Mercer@gmail.com>
-# 
-# <https://github.com/KFERMercer/OpenWrt-CI>
-#
-
+name: 编译 OpenWrt 固件
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -15,6 +7,7 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
+
 env:
   Github: https://github.com/${{github.repository}}
   Author: ${{github.actor}}
