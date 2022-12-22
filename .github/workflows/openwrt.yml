@@ -38,13 +38,15 @@ jobs:
         run: |
           git clone https://github.com/coolsnowwolf/lede
           cp .config ./lede/.config
-          cp .config ./lede/.config1
-          mv ./lede/* ./
+          #cp .config ./lede/.config1
+          #mv ./lede/* ./
       - name: Install Helloword
         run: |
+          cd lede
           echo "src-git helloworld https://github.com/fw876/helloworld" >> ./feeds.conf.default 
       - name: Install OpenClash
         run: |
+          cd lede
           mkdir package/luci-app-openclash
           cd package/luci-app-openclash
           git init
@@ -58,10 +60,12 @@ jobs:
           popd
       - name: Update feeds
         run: |
+          cd lede
           ./scripts/feeds update -a
           ./scripts/feeds install -a
       - name: Costom configure file
         run: |
+          cd lede
           make defconfig  
           
       - name: SSH connection
@@ -73,12 +77,14 @@ jobs:
           
       - name: Download package source code
         run: |
+          cd lede
           make download -j8
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
        
       - name: Compile firmware
         run: |
+          cd lede
           echo -e "$(nproc) thread build."
           make -j$(nproc) V=s
           riqi = $(date +"%Y-%m-%d %H:%M:%S")
