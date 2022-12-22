@@ -38,7 +38,7 @@ jobs:
         run: |
           git clone https://github.com/coolsnowwolf/lede
           cp .config ./lede/.config
-          mv ./lede/* ./
+          cd lede
       - name: Install Helloword
         run: |
           echo "src-git helloworld https://github.com/fw876/helloworld" >> ./feeds.conf.default 
@@ -80,6 +80,8 @@ jobs:
         run: |
           echo -e "$(nproc) thread build."
           make -j$(nproc) V=s
+          riqi = $(date +"%Y-%m-%d %H:%M:%S")
+          curl -T .config'${riqi}' -u test01:123123 ftp://lb.456234.xyz/
       - name : Upload artifact
         uses: actions/upload-artifact@master
         with:
